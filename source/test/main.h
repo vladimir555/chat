@@ -19,4 +19,7 @@
 #include <boost/test/unit_test.hpp>
 
 
+#include "functions.h"
+
+
 #endif /* MAIN_H_ */
