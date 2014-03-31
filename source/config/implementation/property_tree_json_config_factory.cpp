@@ -24,7 +24,7 @@ PropertyTreeJSONConfigFactory::~PropertyTreeJSONConfigFactory() {
 }
 
 
-shared_ptr<IConfig> PropertyTreeJSONConfigFactory::createConfig() const {
+shared_ptr<IConfig> PropertyTreeJSONConfigFactory::createConfig() {
     shared_ptr<PropertyTreeJSONConfig> property_tree_json_config(new PropertyTreeJSONConfig("config.json"));
 
     try {

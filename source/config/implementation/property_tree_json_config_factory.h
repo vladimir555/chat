@@ -45,7 +45,7 @@ public:
                                  PropertyTreeJSONConfigFactory();
     virtual                     ~PropertyTreeJSONConfigFactory();
 
-    virtual shared_ptr<IConfig>  createConfig() const;
+    virtual shared_ptr<IConfig>  createConfig();
 };
 
 

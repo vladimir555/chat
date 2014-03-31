@@ -33,7 +33,7 @@ protected:
                 DefaultConfigFactory();
     virtual    ~DefaultConfigFactory();
 
-    static void makeDefaultConfig(shared_ptr<IConfigChangeable> config);
+    void        makeDefaultConfig(shared_ptr<IConfigChangeable> config);
 
     static const string     DEFAULT_CONFIG_FILE_NAME;
     static const string     DEFAULT_SERVER_HOST;
