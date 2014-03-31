@@ -1,5 +1,5 @@
 /*
- * json_config.h
+ * config_serialization.h
  *
  *  Created on: 24 марта 2014 г.
  *      Author: volodja
@@ -8,8 +8,8 @@
 
 
 
-#ifndef JSON_CONFIG_H_
-#define JSON_CONFIG_H_
+#ifndef CONFIG_SERIALIZATION_H_
+#define CONFIG_SERIALIZATION_H_
 
 
 #include <string>
@@ -21,6 +21,9 @@ using namespace std;
 
 
 namespace config {
+
+
+namespace implementation {
 
 
 class Chat {
@@ -36,7 +39,7 @@ private:
 };
 
 
-class Server: public Chat {
+class Server {
 public:
     Server();
    ~Server();
@@ -47,14 +50,14 @@ public:
 private:
     friend class boost::serialization::access;
 
-    string      host;
-    uint16_t    port;
-
     template<class Archive>
     void serialize(Archive &archive, const unsigned int version) {
         archive & BOOST_SERIALIZATION_NVP(host);
         archive & BOOST_SERIALIZATION_NVP(port);
     };
+
+    string      host;
+    uint16_t    port;
 };
 
 
@@ -67,10 +70,10 @@ public:
     uint16_t    getPort() const;
 
 private:
-    friend class boost::serialization::access;
-
     string      host;
     uint16_t    port;
+
+    friend class boost::serialization::access;
 
     template<class Archive>
     void serialize(Archive &archive, const unsigned int version) {
@@ -80,7 +83,10 @@ private:
 };
 
 
+} /* namespace implementation */
+
+
 } /* namespace config */
 
 
-#endif /* JSON_CONFIG_H_ */
+#endif /* CONFIG_SERIALIZATION_H_ */

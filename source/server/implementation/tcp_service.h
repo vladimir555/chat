@@ -8,24 +8,29 @@
 
 
 
+
 #ifndef TCP_SERVICE_H_
 #define TCP_SERVICE_H_
 
 
-#include "config/config.h"
+#include <boost/shared_ptr.hpp>
+
+
+//#include "config/config.h"
 #include "server/server.h"
 
 
-using config::IConfig;
+using boost::shared_ptr;
+//using config::IConfig;
 
 
 namespace server {
 
 
-class TcpService: public IService {
+class TCPService: public IService {
 public:
-                TcpService(const IConfig &configuration);
-    virtual    ~TcpService();
+                TCPService(/*const shared_ptr<IConfig> config*/);
+    virtual    ~TCPService();
 
     void        initialize();
 };

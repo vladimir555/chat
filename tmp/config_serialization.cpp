@@ -1,5 +1,5 @@
 /*
- * json_config.cpp
+ * config_serialization.cpp
  *
  *  Created on: 24 марта 2014 г.
  *      Author: volodja
@@ -8,10 +8,13 @@
 
 
 
-#include "json_config.h"
+#include "config_serialization.h"
 
 
 namespace config {
+
+
+namespace implementation {
 
 
 Server::Server()
@@ -35,6 +38,17 @@ uint16_t Server::getPort() const {
 }
 
 
+Client::Client()
+:
+    host("localhost"),
+    port(55555)
+{}
+
+
+Client::~Client() {
+}
+
+
 string Client::getHost() const {
     return host;
 }
@@ -43,6 +57,9 @@ string Client::getHost() const {
 uint16_t Client::getPort() const {
     return port;
 }
+
+
+} /* namespace implementation */
 
 
 } /* namespace config */

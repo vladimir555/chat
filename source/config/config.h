@@ -8,6 +8,7 @@
 
 
 
+
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
@@ -15,25 +16,34 @@
 #include <string>
 
 
-using namespace std;
+#include "utility/type.h"
+
+
+using utility::TCPAddress;
 
 
 namespace config {
 
 
-/**
- *  server configuration interface
- */
 class IConfig {
 public:
                     IConfig() {};
     virtual        ~IConfig() {};
 
-    virtual string  getListenHost() const = 0;
-    virtual int16_t getListenPort() const = 0;
+    virtual TCPAddress getServerAddress()   const = 0;
+    virtual TCPAddress getDBAddress()       const = 0;
+    virtual TCPAddress getClientAddress()   const = 0;
+};
 
-    virtual string  getDataBaseHost() const = 0;
-    virtual int16_t getDataBasePort() const = 0;
+
+class IConfigChangeable: public IConfig {
+public:
+    IConfigChangeable() {};
+   ~IConfigChangeable() {};
+
+   virtual void setServerAddress  (const TCPAddress &tcp_address) = 0;
+   virtual void setServerDBAddress(const TCPAddress &tcp_address) = 0;
+   virtual void setClientAddress  (const TCPAddress &tcp_address) = 0;
 };
 
 

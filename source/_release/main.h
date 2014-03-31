@@ -8,18 +8,9 @@
 
 
 
+
 #ifndef MAIN_H_
 #define MAIN_H_
-
-
-#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MAIN
-
-
-#include <boost/test/unit_test.hpp>
-
-
-#include "functions.h"
 
 
 #endif /* MAIN_H_ */

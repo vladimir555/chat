@@ -11,6 +11,6 @@
 #include "main.h"
 
 
-int main() {
-    return 0;
+BOOST_AUTO_TEST_CASE(SimpleTestInMainTestingModule) {
+    BOOST_CHECK(1 == 1);
 }

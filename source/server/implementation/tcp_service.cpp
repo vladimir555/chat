@@ -8,21 +8,22 @@
 
 
 
+
 #include "tcp_service.h"
 
 
 namespace server {
 
 
-TcpService::TcpService(const IConfig &config) {
+TCPService::TCPService(/*const shared_ptr<IConfig> config*/) {
 }
 
 
-TcpService::~TcpService() {
+TCPService::~TCPService() {
 }
 
 
-void TcpService::initialize() {
+void TCPService::initialize() {
 
 }
 
