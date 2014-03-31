@@ -1,7 +1,7 @@
 /*
- * config_factory.h
+ * default_config_factory.h
  *
- *  Created on: 26 марта 2014 г.
+ *  Created on: 31 марта 2014 г.
  *      Author: volodja
  */
 
@@ -9,43 +9,32 @@
 
 
 
-#ifndef CONFIG_FACTORY_H_
-#define CONFIG_FACTORY_H_
+#ifndef DEFAULT_CONFIG_FACTORY_H_
+#define DEFAULT_CONFIG_FACTORY_H_
 
 
-#include <iostream>
 #include <string>
 #include <boost/shared_ptr.hpp>
-#include <boost/filesystem.hpp>
 
 
 #include "config/config.h"
-#include "property_tree_json_config.h"
-#include "utility/type.h"
 
 
-
-using std::endl;
-using std::cerr;
 using std::string;
 using boost::shared_ptr;
-using boost::filesystem::exists;
-using utility::TCPAddress;
-
 
 
 namespace config {
 namespace implementation {
 
 
-class ConfigFactory {
-public:
-                            ConfigFactory();
-    virtual                ~ConfigFactory();
+class DefaultConfigFactory {
+protected:
+                DefaultConfigFactory();
+    virtual    ~DefaultConfigFactory();
 
-    shared_ptr<IConfig>     buildConfig();
+    static void makeDefaultConfig(shared_ptr<IConfigChangeable> config);
 
-private:
     static const string     DEFAULT_CONFIG_FILE_NAME;
     static const string     DEFAULT_SERVER_HOST;
     static const uint16_t   DEFAULT_SERVER_PORT;
@@ -53,8 +42,6 @@ private:
     static const uint16_t   DEFAULT_SERVER_DB_PORT;
     static const string     DEFAULT_CLIENT_HOST;
     static const uint16_t   DEFAULT_CLIENT_PORT;
-
-    void                    makeDefaultConfig(shared_ptr<IConfigChangeable> config);
 };
 
 
@@ -62,4 +49,4 @@ private:
 } /* namespace config */
 
 
-#endif /* CONFIG_FACTORY_H_ */
+#endif /* DEFAULT_CONFIG_FACTORY_H_ */

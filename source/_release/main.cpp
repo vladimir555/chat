@@ -13,18 +13,20 @@
 
 
 #include <boost/shared_ptr.hpp>
-#include "config/implementation/config_factory.h"
+#include "config/config_factory.h"
+#include "config/implementation/property_tree_json_config_factory.h"
 #include "config/config.h"
 
 
-using config::implementation::ConfigFactory;
+using config::IConfigFactory;
+using config::implementation::PropertyTreeJSONConfigFactory;
 using config::IConfig;
 using boost::shared_ptr;
 
 
 int main() {
-    ConfigFactory       config_factory;
-    shared_ptr<IConfig> config = config_factory.buildConfig();
+    shared_ptr<IConfigFactory>  config_factory = new PropertyTreeJSONConfigFactory();
+    shared_ptr<IConfig>         config = config_factory->createConfig();
 
     return 0;
 }
