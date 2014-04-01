@@ -26,7 +26,7 @@ public:
                 IConfigFactory() {};
     virtual    ~IConfigFactory() {};
 
-    virtual shared_ptr<IConfig> createConfig() = 0;
+    virtual shared_ptr<const IConfig> createConfig() = 0;
 };
 
 

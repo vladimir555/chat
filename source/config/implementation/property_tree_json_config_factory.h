@@ -42,10 +42,10 @@ namespace implementation {
 
 class PropertyTreeJSONConfigFactory: public DefaultConfigFactory, public IConfigFactory {
 public:
-                                 PropertyTreeJSONConfigFactory();
-    virtual                     ~PropertyTreeJSONConfigFactory();
+                PropertyTreeJSONConfigFactory();
+    virtual    ~PropertyTreeJSONConfigFactory();
 
-    virtual shared_ptr<IConfig>  createConfig();
+    virtual shared_ptr<const IConfig> createConfig();
 };
 
 

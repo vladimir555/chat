@@ -26,7 +26,7 @@ using boost::shared_ptr;
 
 int main() {
     shared_ptr<IConfigFactory>  config_factory(new PropertyTreeJSONConfigFactory());
-    shared_ptr<IConfig>         config = config_factory->createConfig();
+    shared_ptr<const IConfig>   config = config_factory->createConfig();
 
     return 0;
 }
