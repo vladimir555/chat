@@ -17,7 +17,7 @@
 
 
 //#include "config/config.h"
-#include "server/server.h"
+#include "server/service.h"
 
 
 using boost::shared_ptr;
