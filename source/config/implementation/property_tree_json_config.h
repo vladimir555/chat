@@ -42,7 +42,7 @@ public:
 
     //---IConfig
     virtual TCPAddress  getServerAddress()   const;
-    virtual TCPAddress  getDBAddress()       const;
+    virtual TCPAddress  getServerDBAddress()       const;
     virtual TCPAddress  getClientAddress()   const;
 
     virtual void setServerAddress  (const TCPAddress &tcp_address);

@@ -31,7 +31,7 @@ public:
     virtual        ~IConfig() {};
 
     virtual TCPAddress getServerAddress()   const = 0;
-    virtual TCPAddress getDBAddress()       const = 0;
+    virtual TCPAddress getServerDBAddress()       const = 0;
     virtual TCPAddress getClientAddress()   const = 0;
 };
 

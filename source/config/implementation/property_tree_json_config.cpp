@@ -31,7 +31,7 @@ TCPAddress PropertyTreeJSONConfig::getServerAddress() const {
 }
 
 
-TCPAddress PropertyTreeJSONConfig::getDBAddress() const {
+TCPAddress PropertyTreeJSONConfig::getServerDBAddress() const {
     return TCPAddress(getValue<string>("server.db.host"), getValue<uint16_t>("server.db.port"));
 }
 
