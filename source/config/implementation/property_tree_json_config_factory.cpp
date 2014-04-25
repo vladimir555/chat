@@ -16,6 +16,9 @@ namespace config {
 namespace implementation {
 
 
+LOG_IMPLEMENT(PropertyTreeJSONConfigFactory);
+
+
 PropertyTreeJSONConfigFactory::PropertyTreeJSONConfigFactory() {
 }
 
@@ -31,12 +34,12 @@ shared_ptr<const IConfig> PropertyTreeJSONConfigFactory::createConfig() {
         if (exists(DEFAULT_CONFIG_FILE_NAME))
             property_tree_json_config->readJSON(DEFAULT_CONFIG_FILE_NAME);
         else {
-            cerr << "config not found create default config '" << DEFAULT_CONFIG_FILE_NAME << "'" << endl;
+            LOG_ERROR("config not found create default config '" + DEFAULT_CONFIG_FILE_NAME + "'");
             makeDefaultConfig(property_tree_json_config);
             property_tree_json_config->writeJSON(DEFAULT_CONFIG_FILE_NAME);
         }
     } catch (const ptree_error &e) {
-        cerr << e.what() << endl;
+        LOG_ERROR(e.what());
         throw;
     }
 

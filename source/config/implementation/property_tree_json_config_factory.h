@@ -13,7 +13,6 @@
 #define PROPERTY_TREE_JSON_CONFIG_FACTORY_H_
 
 
-#include <iostream>
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include <boost/filesystem.hpp>
@@ -25,10 +24,9 @@
 #include "property_tree_json_config.h"
 #include "default_config_factory.h"
 #include "utility/type.h"
+#include "utility/logger.h"
 
 
-using std::endl;
-using std::cerr;
 using std::string;
 using boost::shared_ptr;
 using boost::filesystem::exists;
@@ -46,6 +44,8 @@ public:
     virtual    ~PropertyTreeJSONConfigFactory();
 
     virtual shared_ptr<const IConfig> createConfig();
+private:
+    LOG_DEFINE;
 };
 
 
