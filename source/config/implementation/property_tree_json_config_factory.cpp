@@ -34,7 +34,7 @@ shared_ptr<const IConfig> PropertyTreeJSONConfigFactory::createConfig() {
         if (exists(DEFAULT_CONFIG_FILE_NAME))
             property_tree_json_config->readJSON(DEFAULT_CONFIG_FILE_NAME);
         else {
-            LOG_ERROR("config not found create default config '" + DEFAULT_CONFIG_FILE_NAME + "'");
+            LOG_WARN("config not found create default config '" + DEFAULT_CONFIG_FILE_NAME + "'");
             makeDefaultConfig(property_tree_json_config);
             property_tree_json_config->writeJSON(DEFAULT_CONFIG_FILE_NAME);
         }

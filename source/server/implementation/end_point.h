@@ -9,8 +9,8 @@
 
 
 
-#ifndef TCP_SERVICE_H_
-#define TCP_SERVICE_H_
+#ifndef ASIO_TCP_SERVICE_H_
+#define ASIO_TCP_SERVICE_H_
 
 
 #include <boost/shared_ptr.hpp>
@@ -19,12 +19,11 @@
 #include <boost/noncopyable.hpp>
 #include <boost/lexical_cast.hpp>
 #include <vector>
-#include "utility/logger.h"
 
 
-#include "tcp_connection.h"
 #include "server/service.h"
 #include "utility/type.h"
+#include "utility/logger.h"
 
 
 using boost::shared_ptr;
@@ -38,32 +37,23 @@ using boost::lexical_cast;
 using namespace boost::asio;
 
 
-
 namespace server {
 namespace implementation {
 
 
-class ASIOTCPService: public IService, private boost::noncopyable {
+class EndPoint {
 public:
-    explicit    ASIOTCPService(const TCPAddress &listen_address);
-    virtual    ~ASIOTCPService();
+    explicit    EndPoint(const TCPAddress &listen_address);
+    virtual    ~EndPoint();
 
-    void        initialize();
-    void        finalize();
+    void        start();
+    void        stop();
 
 private:
     LOG_DEFINE;
 
-    TCPAddress          listen_address;
-    io_service          service;
-    ip::tcp::socket     socket;
-    ip::address         address;
     ip::tcp::endpoint   end_point;
-    ip::tcp::acceptor   acceptor;
-
-    void        startAccept();
-
-    void        handleAccept(const error_code &error);
+    io_service          service;
 };
 
 
@@ -71,4 +61,4 @@ private:
 } /* namespace server */
 
 
-#endif /* TCP_SERVICE_H_ */
+#endif /* ASIO_TCP_SERVICE_H_ */
