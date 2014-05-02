@@ -27,10 +27,13 @@ AsyncTCPAcceptor::~AsyncTCPAcceptor() {
 }
 
 
-void AsyncTCPAcceptor::start(const tcp::endpoint &end_point) {
-    LOG_DEBUG("start");
-    auto stepHandler    = bind(&AsyncTCPAcceptor::stepHandler, this, _1, 0);
-    socket.async_connect(end_point, stepHandler);
+AsyncTCPAcceptor::ptr_t AsyncTCPAcceptor::start(const tcp::endpoint &end_point, io_service &service_id) {
+    ptr_t   ptr(new AsyncTCPAcceptor(service_id));
+    auto    stepHandler = bind(&AsyncTCPAcceptor::stepHandler, ptr, _1, 0);
+
+    ptr->socket.async_connect(end_point, stepHandler);
+
+    return ptr->shared_from_this();
 }
 
 
@@ -41,23 +44,36 @@ void AsyncTCPAcceptor::stop() {
 
 void AsyncTCPAcceptor::stepHandler(const error_code &error, const size_t &buffer_size) {
     auto stepHandler    = bind(&AsyncTCPAcceptor::stepHandler, this, _1, _2);
-    auto parseResponse  = bind(&AsyncTCPAcceptor::parseResponse, this);
-    LOG_DEBUG("connect");
+
+    LOG_DEBUG("size = " + utility::toString(buffer_size));
+
     reenter(this) {
-//        while (true) {
-        for (;;) {
-            yield async_read_until  (socket, read_buffer, string("\n"), stepHandler);
-            yield service_id.post(parseResponse);
-            yield async_write       (socket, write_buffer, stepHandler);
+        LOG_DEBUG("on connect");
+        while (true) {
+            yield {
+                LOG_DEBUG("on async_read_until");
+                async_read_until(socket, read_buffer, string("0"), stepHandler);
+            }
+//            yield {
+//                LOG_DEBUG("parse");
+//                auto parseResponse  = bind(&AsyncTCPAcceptor::parseResponse, this);
+//                service_id.post(parseResponse);
+//            }
+            yield {
+                LOG_DEBUG("async_write");
+                std::ostream buffer(&write_buffer);
+                buffer << "write_buffer";
+                async_write(socket, write_buffer, stepHandler);
+            }
         };
     };
 }
 
 
 void AsyncTCPAcceptor::parseResponse() {
-    stringstream ss;
-    ss << &read_buffer;
-    LOG_DEBUG("response: " + ss.str());
+//    stringstream ss;
+//    ss << &read_buffer;
+//    LOG_DEBUG("response: '" + ss.str() + "'");
 }
 
 

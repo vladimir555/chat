@@ -44,14 +44,13 @@ int main() {
     TCPAddress          address("127.0.0.1", 8888);
     io_service          service_id;
     ip::tcp::endpoint   end_point(ip::address::from_string("127.0.0.1"), 8888);
-    AsyncTCPAcceptor    async_tcp_acceptor(service_id);
 
-    async_tcp_acceptor.start(end_point);
+//    AsyncTCPAcceptor::ptr_t ptr =
+            AsyncTCPAcceptor::start(end_point, service_id);
     LOG_DEBUG("service run");
     service_id.run();
     LOG_DEBUG("sleep 10 sec");
     sleep(10);
-    async_tcp_acceptor.stop();
 
     return 0;
 }
