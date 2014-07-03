@@ -15,12 +15,19 @@
 namespace utility {
 
 
-template<>
-string toString<boost::asio::streambuf>(const boost::asio::streambuf &t) {
-    stringstream ss;
-    ss << &t;
-    return ss.str();
-}
+//template<>
+//string toString<boost::asio::streambuf>(const boost::asio::streambuf &t) {
+////    std::string s;
+////    boost::asio::streambuf t_copy;
+////    std::istream in;
+////    in.
+////
+////    // Convert streambuf to std::string
+////    std::istream(&sb) >> s;
+////
+////    return s;
+////    string result();
+//}
 
 
 }

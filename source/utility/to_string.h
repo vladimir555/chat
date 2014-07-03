@@ -11,11 +11,14 @@
 
 #include <string>
 #include <sstream>
+#include <iostream>
 #include <boost/lexical_cast.hpp>
 #include <boost/asio/streambuf.hpp>
 
 
 using std::string;
+using std::istream;
+using std::ostream;
 using std::stringstream;
 using boost::lexical_cast;
 
@@ -29,8 +32,8 @@ string toString(const T &t) {
 }
 
 
-template<>
-string toString<boost::asio::streambuf>(const boost::asio::streambuf &t);
+//template<>
+//string toString<boost::asio::streambuf>(const boost::asio::streambuf &t);
 
 
 } /* utility */

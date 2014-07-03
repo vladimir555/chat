@@ -13,7 +13,7 @@
 #define ASYNC_TCP_SERVICE_H_
 
 
-#include <sstream>
+#include <ostream>
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
 #include <boost/noncopyable.hpp>
@@ -29,7 +29,7 @@
 #include "utility/logger.h"
 
 
-using std::stringstream;
+using std::ostream;
 using boost::shared_ptr;
 using boost::bind;
 using boost::noncopyable;
@@ -43,32 +43,32 @@ using boost::asio::ip::tcp;
 using boost::asio::io_service;
 using boost::system::error_code;
 using utility::TCPAddress;
-//using utility::toString;
+using utility::toString;
 
 
 namespace server {
 namespace implementation {
 
 
-class AsyncTCPAcceptor:
-    public  enable_shared_from_this<AsyncTCPAcceptor>,
+class AsioTcpAcceptor:
+    public  enable_shared_from_this<AsioTcpAcceptor>,
     private coroutine, noncopyable
 {
 public:
-    typedef shared_ptr<AsyncTCPAcceptor> ptr_t;
+    virtual        ~AsioTcpAcceptor();
 
-    virtual        ~AsyncTCPAcceptor();
-
-    static ptr_t    start(const tcp::endpoint &end_point, io_service &service_id);
+    static shared_ptr<AsioTcpAcceptor>
+                    start(const tcp::endpoint &end_point, io_service &service_id);
     void            stop();
 
 private:
+    LOG_DEFINE;
     io_service     &service_id;
     streambuf       read_buffer;
     streambuf       write_buffer;
     tcp::socket     socket;
 
-                    AsyncTCPAcceptor(io_service &service_id);
+                    AsioTcpAcceptor(io_service &service_id);
     void            stepHandler(const error_code &error, const size_t &buffer_size);
     void            parseResponse();
 };

@@ -12,11 +12,10 @@
 #define MAIN_H_
 
 
-#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MAIN
+#include "utility/to_string_test.h"
+#include "utility/logger_test.h"
 
-
-#include <boost/test/unit_test.hpp>
+#include "server/implementation/asio_tcp_service_test.h"
 
 
 #endif /* MAIN_H_ */
