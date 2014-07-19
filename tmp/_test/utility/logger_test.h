@@ -28,9 +28,10 @@ public:
         LOG_WARN    ("warn");
         LOG_ERROR   ("error");
         LOG_FATAL   ("fatal");
-        LOG_INFO    ("sleep 1 sec");
-        sleep(1);
-        LOG_INFO    ("sleep 1 sec OK");
+//        LOG_INFO    ("sleep 1 sec");
+//        sleep(1);
+//        LOG_INFO    ("sleep 1 sec OK");
+        BOOST_TEST_MESSAGE("boost test message");
     }
 
 private:

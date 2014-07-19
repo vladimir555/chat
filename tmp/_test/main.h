@@ -8,15 +8,14 @@
 
 
 
-
 #ifndef MAIN_H_
 #define MAIN_H_
 
 
-#include <gtest/gtest.h>
+#include "utility/to_string_test.h"
+#include "utility/logger_test.h"
 
-
-#include "config/default_config_factory_test.h"
+#include "server/implementation/asio_tcp_service_test.h"
 
 
 #endif /* MAIN_H_ */

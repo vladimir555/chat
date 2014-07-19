@@ -1,0 +1,8 @@
+2014-07-14 00:04:12 │ debug	│ debug
+2014-07-14 00:04:12 │ info	│ info
+2014-07-14 00:04:12 │ warning	│ warn
+2014-07-14 00:04:12 │ error	│ error
+2014-07-14 00:04:12 │ fatal	│ fatal
+2014-07-14 00:04:12 │ debug	│ start
+2014-07-14 00:04:12 │ debug	│ sleep 10 sec
+2014-07-14 00:04:22 │ debug	│ sleep 10 sec, OK

@@ -13,6 +13,7 @@
 //-----BoostLog
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
+#include <boost/log/attributes/function.hpp>
 #include <boost/log/sinks/text_ostream_backend.hpp>
 #include <boost/log/utility/setup/file.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
@@ -66,6 +67,7 @@
     add_common_attributes();                                                                \
 };
 #define LOG_FUNCTION(level, message) {          \
+    BOOST_LOG_FUNCTION();                       \
     BOOST_LOG_SEV(logger, level) << message;    \
 };
 #define LOG_DEBUG(message) LOG_FUNCTION(boost::log::trivial::debug, message);

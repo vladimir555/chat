@@ -1,0 +1,1 @@
+clear; rm *.log; ../Test/chat --log_level=message

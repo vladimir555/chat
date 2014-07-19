@@ -37,6 +37,8 @@ shared_ptr<AsioTcpAcceptor> AsioTcpAcceptor::start(const tcp::endpoint &end_poin
     //do connect
     asio_tcp_acceptor->socket.async_connect(end_point, stepHandler);
 
+    LOG_DEBUG("start");
+
     return asio_tcp_acceptor->shared_from_this();
 }
 
@@ -49,8 +51,12 @@ void AsioTcpAcceptor::stop() {
 void AsioTcpAcceptor::stepHandler(const error_code &error, const size_t &buffer_size) {
     auto stepHandler    = bind(&AsioTcpAcceptor::stepHandler, this, _1, _2);
 
+    static int step_handler_i = 0;
+
+    LOG_DEBUG("step_handler_i = " + utility::toString(step_handler_i));
+
     reenter(this) {
-//        LOG_DEBUG("connect");
+        LOG_DEBUG("connect");
         // on connect
         while (true) {
 
@@ -69,20 +75,20 @@ void AsioTcpAcceptor::stepHandler(const error_code &error, const size_t &buffer_
 
             // on read
             yield {
-//                LOG_DEBUG("was read " + toString(buffer_size) + " bytes");
+                LOG_DEBUG("was read " + toString(buffer_size) + " bytes");
 
                 string  write_string = "sdfsdf";
                 ostream out(&write_buffer);
 
                 out << write_string;
 
-//                LOG_DEBUG("write '" + write_string + "'");
+                LOG_DEBUG("write '" + write_string + "'");
 
                 //do write
                 if (buffer_size > 0)
                     async_write(socket, write_buffer, stepHandler);
-//                else
-//                    LOG_DEBUG("empty read_buffer, exit");
+                else
+                    LOG_DEBUG("empty read_buffer, exit");
             }
         };
     };
